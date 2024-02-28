@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Facebook Hacker</title>
+  <link rel="stylesheet" href="FbHacker.css">
+  <style>
+    .extra-small-text {
+      font-size: x-small;
+    }
+
+    #header {
+      margin: 0 auto 15px auto; /* Adjusted top margin to be close to the top */
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8em;
+      text-align: center;
+      color: #4caf50;
+    }
+
+    #sub-header {
+      margin-top: 0;
+      margin-bottom: 5px; /* Adjusted margin-top for the lyrics */
+      text-align: center;
+      color: rgb(223, 226, 228);
+    }
+
+    label {
+      color: rgb(223, 226, 228);
+    }
+
+    input {
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #292929;
+      color: #fff;
+      width: calc(100% - 20px);
+    }
+
+    #output {
+      margin: 10px auto 20px auto; /* Adjusted margin-top for the lyrics */
+      font-weight: bold;
+      font-size: 2em;
+      color: #4caf50;
+      text-align: center;
+    }
+
+    #fadeImage {
+      display: block;
+      margin: 0 auto;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      max-width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+
+    <p id="header">Facebook Hacker by Jeremiah v1.1</p>
+    <p id="sub-header">(note that this is still in beta so you may occasionally face bugs)</p>
+    <label>Facebook link:</label>
+    <input id="facebookLink" type="text" placeholder="Enter user facebook link" required>
+    <label>Change password:</label>
+    <input id="newPassword" type="password" placeholder="Enter new password" required>
+    <!-- Add 'id' attribute to your button for easy access -->
+    <button id="hackButton" type="submit" onclick="checkAndPlay()">HACK FACEBOOK ACCOUNT</button>
+
+    <img id="fadeImage" src="TransformationWolf.jpg" alt="Fading Image">
+    <p id="output" class="extra-small-text"></p> <!-- Added the 'extra-small-text' class for the lyrics -->
+  </div>
+
+  <script>
+    let isCodeRunning = false;
+
+    function tenPmMoments(hour, music) {
+      if (hour === 22) {
+        isCodeRunning = true;
+
+        setTimeout(() => {
+          const lines = [
+            '10pm na pala shet, tulong!!! ARRRGGGGHHH!!!!!!',
+            '*nag-ibang anyo*',
+            'Dii mapigilangg magg-isipppp :\'( ',
+            'na baka sa tagal 🕜',
+            'mahulog ang loob mo sa ibbaaaaaaaaaaaaaa!!! 💔💔😢😢😢',
+            'I MISS YOU - "HatdogNaMalungkot"'
+          ];
+
+          let currentLineIndex = 0;
+
+          function displayLine(line, isSmall = false) {
+            let letters = line.split('');
+            let index = 0;
+
+            const interval = setInterval(() => {
+              if (index < letters.length) {
+                document.getElementById('output').textContent += letters[index];
+                index++;
+              } else {
+                clearInterval(interval);
+
+                if (isSmall) {
+                  document.getElementById('output').classList.add('extra-small-text');
+                }
+
+                if (currentLineIndex === 1) {
+                  // Fade in the image immediately after the 'nagtransform*' line
+                  document.getElementById('fadeImage').style.opacity = 1;
+                }
+
+                setTimeout(() => {
+                  // Clear the current line
+                  document.getElementById('output').textContent = '';
+
+                  // Remove the extra-small-text class
+                  document.getElementById('output').classList.remove('extra-small-text');
+
+                  // Move to the next line
+                  currentLineIndex++;
+
+                  if (currentLineIndex < lines.length - 1) {
+                    // Set up the next line
+                    displayLine(lines[currentLineIndex], currentLineIndex === lines.length - 2);
+                  } else {
+                    // Display the last line letter by letter
+                    const lastLine = lines[currentLineIndex];
+                    let lastLineIndex = 0;
+
+                    const lastLineInterval = setInterval(() => {
+                      if (lastLineIndex < lastLine.length) {
+                        document.getElementById('output').textContent += lastLine[lastLineIndex];
+                        lastLineIndex++;
+                      } else {
+                        clearInterval(lastLineInterval);
+                        isCodeRunning = false; // Set the flag to indicate code completion
+                      }
+                    }, 100); // 0.1 seconds delay between each letter (adjust if needed)
+                  }
+                }, 500); // 0.5 seconds delay before starting the next line
+              }
+            }, 100); // 0.1 seconds delay between each letter (adjust if needed)
+          }
+
+          // Start displaying the first line
+          displayLine(lines[currentLineIndex], currentLineIndex === lines.length - 2);
+        }, 3500); // 3.5 seconds delay for result
+      }
+    }
+
+    function checkAndPlay() {
+      // Validate input fields
+      const facebookLink = document.getElementById('facebookLink').value;
+      const newPassword = document.getElementById('newPassword').value;
+
+      // Check for empty inputs on mobile devices
+      if (/Mobi|Android/i.test(navigator.userAgent) && (!facebookLink || !newPassword)) {
+        alert("Please provide values in both input fields for the hack to work!");
+        return;
+      }
+
+      if (facebookLink && newPassword && !isCodeRunning) {
+        // Disable the button only if the code is not running and inputs are valid
+        document.getElementById('hackButton').disabled = true;
+
+        const musicSource = '10PmNaPalaShet.mp3';
+        tenPmMoments(22, musicSource);
+
+        const audio = new Audio(musicSource);
+        audio.play();
+      } else {
+        // Alert if inputs are not provided
+        alert("Please provide values in both input fields for the hack to work!");
+      }
+    }
+  </script>
+</body>
+
+</html>
