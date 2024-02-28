@@ -48,6 +48,7 @@ button:hover {
   margin-bottom: 20px;
   text-align: center;
   color: rgb(223, 226, 228);
+  cursor: pointer;
 }
 
 label {
