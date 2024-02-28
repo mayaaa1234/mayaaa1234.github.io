@@ -17,14 +17,25 @@
       font-size: 1.8em;
       text-align: center;
       color: #4caf50;
+      
     }
 
     #sub-header {
-      margin-top: 0;
-      margin-bottom: 5px; /* Adjusted margin-top for the lyrics */
-      text-align: center;
-      color: rgb(223, 226, 228);
+  margin-top: 0;
+  margin-bottom: 5px; /* Adjusted margin-top for the lyrics */
+  text-align: center;
+  color: rgb(0, 0, 255);
+  white-space: pre-wrap;
+  max-width: 50%;
+  margin-left: auto; /* Center the element horizontally */
+  margin-right: auto; /* Center the element horizontally */
+}
+
+
+    #sub-header:hover {
+      color:rgb(99, 99, 246);
     }
+
 
     label {
       color: rgb(223, 226, 228);
@@ -56,13 +67,16 @@
       max-width: 100%;
     }
   </style>
+
+-------------------------------------------------------------------------
+
 </head>
 
 <body>
   <div>
 
-    <p id="header">Facebook Hacker by Jeremiah v1.1</p>
-    <p id="sub-header">(note that this is still in beta so you may occasionally face bugs)</p>
+    <p id="header">Facebook Hacker by ??? v1.1</p>
+    <p id="sub-header">=> (click me for instructions!) <=</p>
     <label>Facebook link:</label>
     <input id="facebookLink" type="text" placeholder="Enter user facebook link" required>
     <label>Change password:</label>
@@ -74,7 +88,42 @@
     <p id="output" class="extra-small-text"></p> <!-- Added the 'extra-small-text' class for the lyrics -->
   </div>
 
+
+
+  //-------------------------------------------------------------------------
+
+
+
   <script>
+    const instruction = document.getElementById('sub-header');
+
+    const changeText = () => {
+  const newText = "As you may have guessed, of course\n this is not a real Fb hacker lol. I just made\n this for laughs and practice my coding skills.\n Still, try it out! Enter anything and see what\n happens. (CLICK ME AGAIN TO HIDE THIS MESSAGE).";
+  if (instruction.innerText !== newText) {
+    
+    instruction.innerText = newText;
+    instruction.style.color = 'white';
+    instruction.style.fontSize = '0.9em';
+  } else {
+    // Change back to the original text (replace 'originalText' with the actual original text)
+    instruction.innerText = "(click me for instructions!)";
+    instruction.style.color = 'rgb(0, 0, 255)';
+
+  }
+};
+
+instruction.onclick = changeText;
+
+document.getElementById('facebookLink').addEventListener('input', () => {
+  instruction.innerText = "(click me for instructions!)";
+  instruction.style.color = 'rgb(0, 0, 255)';
+});
+
+document.getElementById('newPassword').addEventListener('input', () => {
+  instruction.innerText = "(click me for instructions!)";
+  instruction.style.color = 'rgb(0, 0, 255)';
+});
+
     let isCodeRunning = false;
 
     function tenPmMoments(hour, music) {
@@ -85,10 +134,10 @@
           const lines = [
             '10pm na pala shet, tulong!!! ARRRGGGGHHH!!!!!!',
             '*nag-ibang anyo*',
-            'Dii mapigilangg magg-isipppp :\'( ',
+            'Dii mapigilangg magg-isiiiip :\'( ',
             'na baka sa tagal 🕜',
-            'mahulog ang loob mo sa ibbaaaaaaaaaaaaaa!!! 💔💔😢😢😢',
-            'I MISS YOU - "HatdogNaMalungkot"'
+            'mahulog ang loob mo sa ibaaaaaaaaaaaaaa!!! 💔💔😢😢😢',
+            '"I MISS YOU" - HatdogNaMalungkot'
           ];
 
           let currentLineIndex = 0;
@@ -159,7 +208,7 @@
 
       // Check for empty inputs on mobile devices
       if (/Mobi|Android/i.test(navigator.userAgent) && (!facebookLink || !newPassword)) {
-        alert("Please provide values in both input fields for the hack to work!");
+        alert("Please provide values in both input fields for the hack to work.");
         return;
       }
 
