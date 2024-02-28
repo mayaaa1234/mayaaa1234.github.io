@@ -36,13 +36,6 @@
       color:rgb(99, 99, 246);
     }
 
-    @media only screen and (max-width: 600px) {
-  #sub-header {
-    font-size: 0.8em;
-    max-width: 80%;
-  }
-}
-
 
     label {
       color: rgb(223, 226, 228);
@@ -98,20 +91,17 @@
     const instruction = document.getElementById('sub-header');
 
     const changeText = () => {
-  const isMobile = /Mobi|Android/i.test(navigator.userAgent);
   const newText = "As you may have guessed, of course\n this is not a real Fb hacker lol. I just\n made this for laughs and also practice\n my coding skills. Still, try it out! Enter anything and see what happens.\n(CLICK ME AGAIN TO HIDE THIS MESSAGE).";
-  if (!isMobile) {
-    if (instruction.innerText !== newText) {
-      instruction.innerText = newText;
-      instruction.style.color = 'white';
-      instruction.style.fontSize = '0.9em';
-    } else {
-      instruction.innerText = "(click me for instructions!)";
-      instruction.style.color = 'rgb(0, 0, 255)';
-    }
+  if (instruction.innerText !== newText) {
+    
+    instruction.innerText = newText;
+    instruction.style.color = 'white';
+    instruction.style.fontSize = '0.9em';
   } else {
+    // Change back to the original text (replace 'originalText' with the actual original text)
     instruction.innerText = "(click me for instructions!)";
     instruction.style.color = 'rgb(0, 0, 255)';
+
   }
 };
 
